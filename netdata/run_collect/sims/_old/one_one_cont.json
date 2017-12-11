@@ -1,0 +1,18 @@
+{
+  "_comment": "one sender one sink, sends continuously",
+  "start": 1503429988.7813845,
+  "duration": 900.0,
+  "step": 1.0,
+  "sink_port": 5005,
+  "0": {
+    "quantity": 1,
+    "emit_prob": 1.0,
+    "burst": 10,
+    "sinks": [
+      [
+        0,
+        0.25
+      ]
+    ]
+  }
+}

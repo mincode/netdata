@@ -1,0 +1,23 @@
+drop table if exists edges;
+create table edges (
+  id bigserial primary key,
+  sip inet,
+  sport int,
+  dip inet,
+  dport int,
+  stime_epoch_secs numeric,
+  etime_epoch_secs numeric
+-- ,
+--   primary key(sip, dip, stime_epoch_secs, etime_epoch_secs)
+);
+grant select on edges to graph;
+
+drop table if exists frames;
+create table frames (
+  frame varchar(20),
+  start_epoch numeric,
+  end_epoch numeric,
+  sink_port int,
+  primary key(frame)
+);
+grant select on frames to graph;

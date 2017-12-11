@@ -1,0 +1,37 @@
+{
+  "_comment": "one sender one sink, every other; twice; occasionally connect",
+  "start": 1510084781.083569,
+  "duration": 120.0,
+  "step": 1.0,
+  "sink_port": 5005,
+  "0": {
+    "quantity": 1,
+    "emit_prob": 0.5,
+    "burst": 1,
+    "sinks": [
+      [
+        0,
+        0.9
+      ],
+      [
+        1,
+        0.1
+      ]
+    ]
+  },
+  "1": {
+    "quantity": 1,
+    "emit_prob": 0.5,
+    "burst": 1,
+    "sinks": [
+      [
+        0,
+        0.1
+      ],
+      [
+        1,
+        0.9
+      ]
+    ]
+  }
+}

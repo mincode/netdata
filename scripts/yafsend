@@ -1,0 +1,2 @@
+sudo /usr/local/bin/yaf -i eth0 --live=pcap --out=ctrl.chgate.net --ipfix=tcp --ipfix-port=18001 --silk
+

@@ -1,0 +1,44 @@
+{
+  "start": epoch seconds for start,
+  "duration": seconds,
+  "step": seconds,
+  "sink_port": port used by the sinks,
+  "1": sender_program,
+  "2": sender_program,
+  ...
+# extension
+  "server1": server_program,
+  "server2": server_program,
+  ...
+}
+
+sender_program =
+{
+  "quantity": number of senders running the program,
+  "emit_prob": probability,
+  "burst": how often to send per step,
+  "sinks": list of [sink index, weight],
+  "hits": list of [sink index, or [index1, index2]], where the pair indicates an inclusive range of sink indices
+}
+
+Programs are labelled with "1", "2", etc.
+
+The senders are assigned according to the order in which the programs are listed.
+For example, program1.repeat = 2, program2.repeat=3, then
+10.0.17.0-1 for program 1 and 10.0.17.2-4 for program 2.
+
+Each time step the sender selects one random sink from hit list and sends one package. Each sink is contacted only once.
+
+Both sinks and hits may be empty lists. hits is optional.
+
+Programs usually start a few seconds after launching and the launcher will add the start time.
+
+# extension
+sinks may also act as servers that may send to other servers. server_program gives the specs.
+
+server_program =
+{
+  "emit_prob": probability,
+  "burst": how often to send per step,
+  "sinks": list of [sink index, weight],
+}

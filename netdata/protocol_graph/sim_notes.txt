@@ -1,0 +1,41 @@
+sim5, 10 hour run, with 60 secs has nice variation of connected components
+cluster 0: sinks 0, 1, 2, 3
+cluster 1: sinks 4, 5
+cluster 2: sinks 6, 0, 4
+
+[4, 9]
+[3, 4, 6]
+[6, 7]
+[13]
+[6]
+[5]
+[2]
+
+sim5h1
+senders in cluster 1 infected:
+attack sinks 4, 1, 2, 6
+
+There is little variation. The clusters occur almost in this order:
+
+60 secs:
+[13], [11], [2, 8], [6], [2, 3], 2
+
+10 secs:
+[13], [12], [11], [3, 8], [2, 8], [2, 7], [7], [6], [3, 3], [2, 3],
+[2, 2], [2]
+
+sim4, 1 hour run, with 60 secs, less variation
+[13]
+[4, 9]
+[3, 4, 6]
+[2, 2]
+
+sim4h1
+senders in cluster 1 infected:
+attack sinks 4, 1, 2, 6
+
+60 secs:
+[13], [12], [2]
+
+10 secs:
+[13], [12], [11], [2, 7], [2, 5], [2]

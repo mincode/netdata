@@ -1,0 +1,33 @@
+{
+  "_comment": "two senders two sinks, small overlap",
+  "start": 1504231103.7804618,
+  "duration": 300.0,
+  "step": 1.0,
+  "sink_port": 5005,
+  "0": {
+    "quantity": 1,
+    "emit_prob": 0.1,
+    "burst": 1,
+    "sinks": [
+      [
+        0,
+        0.25
+      ]
+    ]
+  },
+  "1": {
+    "quantity": 1,
+    "emit_prob": 0.5,
+    "burst": 1,
+    "sinks": [
+      [
+        0,
+        0.01
+      ],
+      [
+        1,
+        0.99
+      ]
+    ]
+  }
+}

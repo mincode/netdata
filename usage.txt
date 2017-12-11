@@ -1,0 +1,20 @@
+starting and stopping worker computers:
+go into the directory simulatepg/workers
+(cd simulatepg/workers)
+
+ctrl_ami is the program that counts, launches, starts, stops and terminates
+sink and sender machines.
+
+./ctrl_ami runs the program, and it will show its required parameters.
+
+./ctrl_ami sinks launch 4
+launches 4 new instances of "sink" machines
+./ctrl_ami senders laucn 4
+launches 4 new instances of "sender" machines
+
+./ctrl_ami sinks start
+./ctrl_ami sinks stop
+starts and stops the sinks. Similarly for "senders".
+./ctrl_ami sinks terminate
+stops and deletes the sinks.
+

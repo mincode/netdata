@@ -1,0 +1,67 @@
+{
+  "_comment": "three distinct components, two joined",
+  "start": 1502479564.0918806,
+  "duration": 3600.0,
+  "step": 1.0,
+  "sink_port": 5005,
+  "0": {
+    "quantity": 4,
+    "emit_prob": 0.25,
+    "burst": 10,
+    "sinks": [
+      [
+        0,
+        0.25
+      ],
+      [
+        1,
+        0.25
+      ]
+    ]
+  },
+  "1": {
+    "quantity": 4,
+    "emit_prob": 0.25,
+    "burst": 10,
+    "sinks": [
+      [
+        2,
+        0.25
+      ],
+      [
+        3,
+        0.25
+      ]
+    ]
+  },
+  "2": {
+    "quantity": 3,
+    "emit_prob": 0.25,
+    "burst": 10,
+    "sinks": [
+      [
+        4,
+        0.25
+      ],
+      [
+        5,
+        0.25
+      ]
+    ]
+  },
+  "3": {
+    "quantity": 1,
+    "emit_prob": 0.25,
+    "burst": 10,
+    "sinks": [
+      [
+        4,
+        0.25
+      ],
+      [
+        5,
+        0.25
+      ], [2, 0.125], [3, 0.125]
+    ]
+  }
+}

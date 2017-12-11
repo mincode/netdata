@@ -1,0 +1,64 @@
+{
+  "about": "3 clusters; 2 senders per cluster; 7 sinks; sometimes all 3 are one; 10 hours",
+  "start": 1502063441.695436,
+  "duration": 36000.0,
+  "step": 1.0,
+  "sink_port": 5005,
+  "0": {
+    "quantity": 2,
+    "emit_prob": 0.5,
+    "burst": 10,
+    "sinks": [
+      [
+        0,
+        0.25
+      ],
+      [
+        1,
+        0.25
+      ],
+      [
+        2,
+        0.25
+      ],
+      [
+        3,
+        0.25
+      ]
+    ]
+  },
+  "1": {
+    "quantity": 2,
+    "emit_prob": 0.5,
+    "burst": 10,
+    "sinks": [
+      [
+        4,
+        0.5
+      ],
+      [
+        5,
+        0.5
+      ]
+    ]
+  },
+  "2": {
+    "quantity": 2,
+    "emit_prob": 0.5,
+    "burst": 10,
+    "sinks": [
+      [
+        6,
+        0.9996
+      ],
+      [
+        0,
+        0.0002
+      ],
+      [
+        4,
+        0.0002
+      ]
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "_comment": "three clusters that connect occasionally; simultaneous connections between clusters allowed",
+  "start": 1510937598.2042322,
+  "duration": 120.0,
+  "step": 1.0,
+  "sink_port": 5005,
+  "0": {
+    "quantity": 3,
+    "emit_prob": 0.25,
+    "burst": 1,
+    "sinks": [
+      [
+        0,
+        0.9
+      ],
+      [
+        1,
+        0.05
+      ],
+      [
+        2,
+        0.05
+      ]
+    ]
+  },
+  "1": {
+    "quantity": 3,
+    "emit_prob": 0.25,
+    "burst": 1,
+    "sinks": [
+      [
+        0,
+        0.05
+      ],
+      [
+        1,
+        0.9
+      ],
+      [
+        2,
+        0.05
+      ]
+    ]
+  },
+  "2": {
+    "quantity": 3,
+    "emit_prob": 0.25,
+    "burst": 1,
+    "sinks": [
+      [
+        0,
+        0.05
+      ],
+      [
+        1,
+        0.05
+      ],
+      [
+        2,
+        0.9
+      ]
+    ]
+  }
+}

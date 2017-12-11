@@ -1,0 +1,58 @@
+sudo yum install gcc
+sudo yum install gnutls-devel
+
+#libraries
+sudo yum install libpcap libpcap-devel pcre pcre-devel glib2-deve
+sudo yum install zlib zlib-devel
+
+#libfixbuf
+tar -xvzf libfixbuf-1.7.0.tar.gz
+cd libfixbuf-1.7.0
+./configure
+make
+sudo make install
+
+#yaf
+tar -xvzf yaf-2.8.0.tar.gz
+cd yaf-2.8.0
+ ./configure --enable-applabel --enable-plugins
+sudo make
+sudo make install
+
+#run yaf as a service
+sudo cp etc/init.d/yaf /etc/init.d/
+sudo cp etc/yaf.conf /usr/local/etc/
+sudo chmod +x /etc/init.d/yaf
+
+#SiLK
+tar -xvzf silk-3.11.0.tar.gz
+cd silk-3.11.0
+./configure --with-libfixbuf=/usr/local/lib/pkgconfig --enable-ipv6
+make
+sudo make install
+
+# configure SiLK
+sudo mkdir -p /data
+sudo cp site/twoway/silk.conf /data
+
+#continue with http://tools.netsa.cert.org/yaf/libyaf/yaf_silk.html#install
+#https://tools.netsa.cert.org/silk/silk-install-handbook.html
+
+#pcap to silk: rwp2yaf2silk
+https://tools.netsa.cert.org/silk/rwp2yaf2silk.html
+#netflow to silk
+https://tools.netsa.cert.org/silk/rwpdu2silk.html
+
+sudo cp src/rwflowpack/rwflowpack.init.d /etc/init.d/rwflowpack
+sudo chmod +x /etc/init.d/rwflowpack
+sudo cp src/rwflowpack/rwflowpack.conf /usr/local/etc/rwflowpack.conf
+# then configure rwflowpack as a service
+
+# yaf as sensor
+sudo mkdir /var/log/yaf
+sudo mkdir /var/log/yaf/log
+sudo mkdir /var/log/yaf/run
+export LTDL_LIBRARY_PATH=/usr/local/lib/yaf
+
+sudo chkconfig --add yaf
+sudo chkconfig yaf on

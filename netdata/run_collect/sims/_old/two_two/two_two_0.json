@@ -1,0 +1,33 @@
+{
+  "_comment": "two senders two sinks, 50% send prob",
+  "start": 1504215925.6844993,
+  "duration": 300.0,
+  "step": 1.0,
+  "sink_port": 5005,
+  "0": {
+    "quantity": 1,
+    "emit_prob": 0.1,
+    "burst": 10,
+    "sinks": [
+      [
+        0,
+        0.25
+      ]
+    ]
+  },
+  "1": {
+    "quantity": 1,
+    "emit_prob": 0.5,
+    "burst": 10,
+    "sinks": [
+      [
+        0,
+        0.95
+      ],
+      [
+        1,
+        0.05
+      ]
+    ]
+  }
+}

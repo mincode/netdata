@@ -1,0 +1,91 @@
+Data sets:
+All data sets cover 120 seconds, down to smallest resolution of 1 second.
+Each client sends a message at most every second.
+
+Data set: s1c1_s1c1
+2 clusters
+Cluster 0: 1 server, 1 client
+  Emit probability of the client: 0.5
+  The client only sends to the server in its cluster.
+Cluster 1: 1 server, 1 client
+  Emit probability of the client: 0.5
+  The client sends to Cluster 0 with probability 0.1 and 
+  to its own cluster with probability 0.9. 
+
+Data set: clusters2
+2 clusters
+Cluster 0: 1 server, 1 client
+  Emit probability of the client: 0.5
+  The client sends to its own cluster with probability 0.9 and 
+  to Cluster 1 with probability 0.1. 
+Cluster 1: 1 server, 1 client
+  Emit probability of the client: 0.5
+  The client sends to Cluster 0 with probability 0.1 and 
+  to its own cluster with probability 0.9. 
+
+Data set: clusters2rare
+2 clusters
+Cluster 0: 1 server, 1 client
+  Emit probability of the client: 0.5
+  The client sends to its own cluster with probability 0.98 and 
+  to Cluster 1 with probability 0.02. 
+Cluster 1: 1 server, 1 client
+  Emit probability of the client: 0.5
+  The client sends to Cluster 0 with probability 0.02 and 
+  to its own cluster with probability 0.98. 
+
+Data set: cl2
+2 clusters
+Cluster 0: 1 server, 2 clients
+  Emit probability of any client: 0.33
+  Any client sends to its own cluster with probability 0.9 and 
+  to Cluster 1 with probability 0.1. 
+  Since there are two clients, they may send simultaneously. 
+Cluster 1: 1 server, 2 clients
+  Emit probability of any client: 0.33
+  Any client sends to Cluster 0 with probability 0.1 and 
+  to its own cluster with probability 0.9. 
+  Since there are two clients, they may send simultaneously. 
+
+Data set: cl2rare
+2 clusters
+Cluster 0: 1 server, 2 clients
+  Emit probability of any client: 0.33
+  Any client sends to its own cluster with probability 0.98 and 
+  to Cluster 1 with probability 0.02. 
+  Since there are two clients, they may send simultaneously. 
+Cluster 1: 1 server, 2 clients
+  Emit probability of any client: 0.33
+  Any client sends to Cluster 0 with probability 0.02 and 
+  to its own cluster with probability 0.98. 
+  Since there are two clients, they may send simultaneously. 
+
+Data set: clusters3
+3 clusters
+Cluster 0: 1 server, 1 client
+  Emit probability of the client: 0.5
+  The client sends to its own cluster with probability 0.9 and 
+  to any other cluster with probability 0.05. 
+Cluster 1: 1 server, 1 client
+  Emit probability of the client: 0.5
+  The client sends to its own cluster with probability 0.9 and 
+  to any other cluster with probability 0.05. 
+Cluster 2: 1 server, 1 client
+  Emit probability of the client: 0.5
+  The client sends to its own cluster with probability 0.9 and 
+  to any other cluster with probability 0.05. 
+
+Data set: cl3
+3 clusters
+Cluster 0: 1 server, 3 clients
+  Emit probability of any client: 0.25
+  The client sends to its own cluster with probability 0.9 and 
+  to any other cluster with probability 0.05. 
+Cluster 1: 1 server, 3 clients
+  Emit probability of any client: 0.25
+  The client sends to its own cluster with probability 0.9 and 
+  to any other cluster with probability 0.05. 
+Cluster 2: 1 server, 3 clients
+  Emit probability of any client: 0.25
+  The client sends to its own cluster with probability 0.9 and 
+  to any other cluster with probability 0.05. 

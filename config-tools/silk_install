@@ -24,6 +24,17 @@ sudo cp etc/init.d/yaf /etc/init.d/
 sudo cp etc/yaf.conf /usr/local/etc/
 sudo chmod +x /etc/init.d/yaf
 
+# yaf as sensor
+sudo mkdir /var/log/yaf
+sudo mkdir /var/log/yaf/log
+sudo mkdir /var/log/yaf/run
+
+continue here
+export LTDL_LIBRARY_PATH=/usr/local/lib/yaf
+
+sudo chkconfig --add yaf
+sudo chkconfig yaf on
+
 #SiLK
 tar -xvzf silk-3.11.0.tar.gz
 cd silk-3.11.0
@@ -48,11 +59,3 @@ sudo chmod +x /etc/init.d/rwflowpack
 sudo cp src/rwflowpack/rwflowpack.conf /usr/local/etc/rwflowpack.conf
 # then configure rwflowpack as a service
 
-# yaf as sensor
-sudo mkdir /var/log/yaf
-sudo mkdir /var/log/yaf/log
-sudo mkdir /var/log/yaf/run
-export LTDL_LIBRARY_PATH=/usr/local/lib/yaf
-
-sudo chkconfig --add yaf
-sudo chkconfig yaf on

@@ -1,0 +1,4 @@
+sudo pip install lockfile
+sudo pip install zmq
+sudo yum install python36-devel
+sudo pip install netifaces

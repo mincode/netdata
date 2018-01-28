@@ -1,4 +1,4 @@
-#!/home/ec2-user/anaconda3/bin/python
+#!/usr/bin/python3
 
 #
 # chkconfig: - 19 96

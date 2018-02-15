@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python unregister_sim.py $@

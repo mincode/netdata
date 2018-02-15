@@ -10,8 +10,8 @@ from defaults import sink_instance
 __author__ = 'Manfred Minimair <manfred@minimair.org>'
 
 
-def_idle = 1
-def_active = 60
+def_idle = 0  # default idle timeout for yaf
+def_active = 60  # default active timeout for yaf
 ctrl_yaf = '/home/ec2-user/gitProjects/netdata/netdata/sink/ctrl_yaf.py'
 
 

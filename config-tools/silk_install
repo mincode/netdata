@@ -38,7 +38,8 @@ sudo chkconfig yaf on
 #SiLK
 tar -xvzf silk-3.11.0.tar.gz
 cd silk-3.11.0
-./configure --with-libfixbuf=/usr/local/lib/pkgconfig --enable-ipv6
+./configure --with-libfixbuf=/usr/local/lib/pkgconfig --enable-ipv6 --with-python=/usr/bin/python3.6
+# need to specify python path if not system default
 make
 sudo make install
 

@@ -5,6 +5,7 @@ import silk
 from subprocess import Popen
 import string
 import random
+import sqlparse
 
 
 def id_generator(size=8, chars=string.ascii_letters):
@@ -35,6 +36,59 @@ def add_record(graph, record):
                               'etime_epoch_secs': record.etime_epoch_secs})
     return graph
 
+
+def sql_parse_no_ws(s):
+    """
+    Parse sql statement skipping whitespaces.
+    :param s: string with one sql statement.
+    :return: list of sqlparse.tokens for sql statement without the whitespaces.
+    """
+    parsed = sqlparse.parse(s)
+    tokens = parsed[0].tokens
+    cleaned = [for t in tokens if t.ttype != sqlparse.tokens.Token.Text.Whitespace]
+    return cleaned
+
+
+def tokens_select_all(tokens):
+    """
+    Check if tokens of sql statement is a 'select * from table;' statement.
+    :param tokens: list of sqlparse.tokens representing sql statment.
+    :return: (table, ) or empty tuple if no such statement.
+    """
+    result = ()
+    token_type = sqlparse.tokens.Token
+    if tokens[0].ttype == token_type.Keyword.DML and \
+       tokens[0].value.lower() == 'select':
+        if tokens[1].ttype == token_type.Wildcard and tokens[1].value == '*':
+            if tokens[2].ttype == token_type.Keyword and tokens[2].value.lower() == 'from':
+                if tokens[4].ttype == token_type.Punctuation and tokens[4].value == ';':
+                    table = tokens[3].value
+                    result = (table,)
+    return result
+
+#                cur.execute('select * from edges where \
+#               (%s<=stime_epoch_secs and stime_epoch_secs<%s);',
+
+def tokens_select_frame(tokens):
+    """
+    Check if tokens of sql statement is a
+    'select * from table where (%s<=stime_epoch_secs and stime_epoch_secs<%s);'
+    statement
+    :param tokens: list of sqlparse.tokens representing sql statment.
+    :return: tuple (table name, start, end) or empty tuple if not such a statement.
+    """
+    result = ()
+    token_type = sqlparse.tokens.Token
+    if tokens[0].ttype == token_type.Keyword.DML and \
+       tokens[0].value.lower() == 'select':
+        if tokens[1].ttype == token_type.Wildcard and tokens[1].value == '*':
+            if tokens[2].ttype == token_type.Keyword and tokens[2].value.lower() == 'from':
+                if tokens[4].ttype == token_type.Punctuation and tokens[4].value == ';':
+                    table = tokens[3].value
+    return result
+# only need to check if where clause is there
+#sqlparse.sql.where
+#tokens[4].ttype
 
 class IPFIXGraph:
     """
@@ -75,10 +129,10 @@ class IPFIXGraph:
         Close connection if appropriate.
         """
         if self._database:
-            # It seems it is closed automatically.
+            # It seems the connection is closed automatically.
             # self._database.close()
+            # only need to remove the temporary silk file.
             os.remove(self._silk_file)
-            pass
 
     def fetch_all(self):
         """

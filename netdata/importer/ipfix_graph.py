@@ -6,6 +6,7 @@ from subprocess import Popen
 import string
 import random
 import sqlparse
+from importer.protocol_graph import ProtocolGraph
 
 
 def id_generator(size=8, chars=string.ascii_letters):
@@ -20,21 +21,6 @@ def id_generator(size=8, chars=string.ascii_letters):
         L.append(random.choice(chars))
     return ''.join(L)
     # return ''.join(random.choice(chars) for _ in range(size))
-
-
-def add_record(graph, record):
-    """
-    Add one record to a graph.
-    :params graph: networkx graph.
-    :params record: record for an edge.
-    :return: graph, as modified in place.
-    """
-    graph.add_edge(record.sip, record.dip,
-                   attr_dict={'sport': record.sport, 'dport': record.dport,
-                              'stime_epoch_secs': record.stime_epoch_secs,
-                              'etime_epoch_secs': record.etime_epoch_secs})
-    return graph
-
 
 def sql_parse_no_ws(s):
     """
@@ -230,71 +216,12 @@ class IPFIXConnection(FlowConnection):
         super(IPFIXConnection, self).close()
 
 
-class IPFIXGraph:
-    """
-    Protocol graph obtained from a IPFIX file.
-    Typical usage:
-    db = IPFIXGraph(ipfix_file)
-    g = db.fetch_all()
-    """
-    _database = None  # connection to input Silk file
-
-
-    def __init__(self, connection):
-        """
-        Initialize; create connection.
-        :param connection: FlowConnection object.
-        """
-        self._database = connection
-        self._database.open()
-
-    def __del__(self):
-        """
-        Close connection if appropriate.
-        """
-        if self._database:
-            self._database.close()
-
-    def fetch_all(self):
-        """
-        Fetch the whole protocol graph.
-        :return: networkx.MultiDiGraph.
-        """
-        with self._database:
-            g = networkx.MultiDiGraph()
-            with self._database.cursor() as cur:
-                cur.execute("select * from edges;")
-                for rec in cur:
-                    add_record(g, rec)
-        return g
-
-    def fetch_frame(self, start, minutes=0, seconds=0):
-        """
-        Fetch graph from one frame; include streams that start in the frame.
-        :param start: epoch start time.
-        :param minutes: minutes for the frame.
-        :param seconds: seconds for the frame.
-        :return: graph.
-        """
-        total_secs = minutes * 60 + seconds
-        end = start + total_secs
-        with self._database:
-            g = networkx.MultiDiGraph()
-            with self._database.cursor() as cur:
-                cur.execute('select * from edges where \
-                (%s<=stime_epoch_secs and stime_epoch_secs<%s);',
-                            (start, end))
-                for rec in cur:
-                    add_record(g, rec)
-        return g
-
-
 def main():
     if len(sys.argv)>1:
         ipfix_file = sys.argv[1]
         print('File: ' + ipfix_file)
         connection = IPFIXConnection(ipfix_file)
-        ipfix_graph = IPFIXGraph(connection)
+        ipfix_graph = ProtocolGraph(connection)
         g = ipfix_graph.fetch_all()
         print("Number of nodes: {}".format(g.number_of_nodes()))
     else:

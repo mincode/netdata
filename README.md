@@ -91,14 +91,35 @@ To import the data into the database, run:
 
 The ProtocolGraph class from netdata/protocol_graph/protocol_graph.py represents the data from a network simulation.
 The flow data can be accessed as a [NetworkX](https://networkx.github.io/) multidigraph (multi-graph with directed edges), where the nodes are the worker nodes
-and the edges represent IPFIX flows. See the script connected_components.py as an example for analyzing the connected components
+and the edges represent IPFIX flows. Create A new ProtocolGraph object with
+
+     db = ProtocolGraph(host, user, dbname)
+
+where host, user and dbnmae is the ip address of the database sever, database user name and respectively database name with the
+flow data.
+
+Iterate over the graphs obtained from a simulation for consecutive time frames of length frame_sec with
+
+  db.iter(sim_name, frame_sec)
+
+where sim_name is the name of the simulation as defined by the simulation configuration file.
+
+See the script connected_components.py as an example for analyzing the connected components
 of a graph obtained from a simulation.
 
 ### Import IPFIX Flow Data
 
 While the script get_sim_results described above imports network flow data from SiLK, netdata/import contains tools for accessing
-network flows saved in IPFIX files.
+network flows saved in IPFIX files directly without storing the data in the database server. The file ipfix_graph.py
+implements IPFIXGraph to access IPFIX files as simulation data via ProtocolGraph.
 
+To create an IPFIXGraph object, use
+
+    IPFIXGraph(ipfix_file)
+
+where ipfix_file is the name of the IPFIX data file.
+
+The script getIPFIX illustrates the use of IPFIXGraph.
 
 ## Resources
 - [SiLK website](https://tools.netsa.cert.org/silk/index.html)

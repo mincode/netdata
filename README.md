@@ -42,6 +42,8 @@ Enter the connection information for the database in netdata/protocol_graph/defa
 
 ## Usage
 
+### Launch Workers
+
 netdata/workers/ctrl_ami is the Python script that counts, launches, starts, stops and terminates
 sink and sender machines.
 

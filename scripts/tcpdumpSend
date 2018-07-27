@@ -1,1 +1,0 @@
-tcpdump -i eth0 -w result -C 1 -W 32 -z ~/pcapSend port 5005

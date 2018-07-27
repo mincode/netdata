@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [ $# -eq 0 ]; then
-  psql -h db0.chgate.net -U dbuser graphs
-else
-  psql -h db0.chgate.net -U dbuser graphs -f $1
-fi
-

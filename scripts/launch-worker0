@@ -1,3 +1,0 @@
-aws ec2 run-instances --image-id ami-f03236e6 --security-group-ids sg-bbc856ca --subnet-id subnet-50b2295c --count 1 --instance-type t2.micro --key-name gate --private-ip 192.168.16.11 --query 'Instances[0].InstanceId'
-# --dry-run
-

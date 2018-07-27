@@ -1,1 +1,0 @@
-sudo /usr/local/bin/yaf -i eth0 --live=pcap --out /tmp/yaf/yaf --silk

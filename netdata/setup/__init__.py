@@ -1,5 +1,7 @@
 __author__ = 'Manfred Minimair <manfred@minimair.org>'
 
+# Give access to a default database with network data
+
 import matplotlib.pyplot as plt
 import networkx as nx
 

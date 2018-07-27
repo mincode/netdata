@@ -1,8 +1,0 @@
-# create a Personal Access Token in github
-# credntial helper will store it as a password in ~/.git-credentials
-git config --global user.name minimair
-git config --global user.email manfred@minimair.org
-git config --global core.autocrlf input
-git config --global push.default simple
-git config --global credential.helper store
-

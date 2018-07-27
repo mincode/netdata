@@ -1,6 +1,0 @@
-sudo yum install gcc
-sudo yum install gnutls-devel
-
-#libraries
-sudo yum install libpcap libpcap-devel pcre pcre-devel glib2-devel
-sudo yum install zlib zlib-devel

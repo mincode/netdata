@@ -127,7 +127,7 @@ class IPFIXCursor(FlowCursor):
     def execute(self, sql, params=tuple()):
         """
         Execute sql statment to select the data;
-        currently only fetch_all and fetch_fram implemented.
+        currently only fetch_all and fetch_frame implemented.
         :param sql: string of sql statement.
         :param params: tuple (start, end).
         """

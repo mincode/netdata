@@ -38,24 +38,27 @@ Communication data is stored in a [PostgreSQL](https://www.postgresql.org/) data
 control host.
 Use the script netdata/run_collect/createDatabase create the database and the script netdata/run_collect/createTables to
 set up the appropriate tables in the database.
-Enter the connection information for the database in netfdata/protocol_graph/defaults.py.
+Enter the connection information for the database in netdata/protocol_graph/defaults.py.
 
 ## Usage
 
-Simulate and import network flow to derive protocol graphs
-starting and stopping worker computers:
-go into the directory netdata/workers
-(cd netdata/workers)
-
-ctrl_ami is the program that counts, launches, starts, stops and terminates
+netdata/workers/ctrl_ami is the Python script that counts, launches, starts, stops and terminates
 sink and sender machines.
 
-./ctrl_ami runs the program, and it will show its required parameters.
+To see the command line parameters run:
 
-./ctrl_ami sinks launch 4
-launches 4 new instances of "sink" machines
-./ctrl_ami senders laucn 4
-launches 4 new instances of "sender" machines
+    ctrl_ami
+
+Workers may either act as senders that send random messages or sinks that receive messages.
+
+To launch <num> new instances of sink workers:
+
+    ctrl_ami sinks launch <num>
+
+To launch <num> new instances of sender workers:
+
+    ctrl_ami senders laucn <num>
+
 
 ./ctrl_ami sinks start
 ./ctrl_ami sinks stop

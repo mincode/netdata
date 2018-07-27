@@ -42,7 +42,7 @@ Enter the connection information for the database in netdata/protocol_graph/defa
 
 ## Usage
 
-### Launch Workers
+### Control Workers
 
 netdata/workers/ctrl_ami is the Python script that counts, launches, starts, stops and terminates
 sink and sender machines.
@@ -53,41 +53,55 @@ To see the command line parameters run:
 
 Workers may either act as senders that send random messages or sinks that receive messages.
 
-To launch <num> new instances of sink workers:
+To launch <num> new instances of sender or sink workers:
 
-    ctrl_ami sinks launch <num>
+    ctrl_ami <senders|sinks> launch <num>
 
-To launch <num> new instances of sender workers:
+To start, stop and terminate senders or sinks use:
 
-    ctrl_ami senders laucn <num>
+    ctrl_ami <senders|sinks> start
+    ctrl_ami <senders|sinks> stop
+    ctrl_ami <senders|sinks> terminate
 
+### Run Network Simulations
 
-./ctrl_ami sinks start
-./ctrl_ami sinks stop
-starts and stops the sinks. Similarly for "senders".
-./ctrl_ami sinks terminate
-stops and deletes the sinks.
+Each network simulation is specified by a configuration file, described by netdata/run_collect/sim_format.txt.
+Sample configurations can be found in netdata/run_collect/sims.
+Before running a simulation laucnh the appropriate number of sender and sink workers. The scripts for running simulations are
+contained in netdata/run_collect/.
 
-To run the Chat Console:
+To run the simulation, execute:
 
-    chconsole
+    run_sim <simulation configuration file>
 
-or
+### Collect Network Communication Data
 
-    jupyter chconsole
+Network communication data is stored in the postgres database for further analysis.
+The data comprises of standard information about IPFIX network flows derived from the messages exchanged between the sender and sink
+workers, such as source and destinatin ip addresses,
+ports, start and end times, etc.
+The scripts for running simulations are
+contained in netdata/run_collect/.
 
-Chat Console can either start its own IPython kernel or
-attach to an independent Jupyter kernel, including
- IPython, through a connection file.
-For convenience, a script to start an
-independent Ipython kernel is included:
+To import the data into the database, run:
 
-    chc-python
+    get_sim_results <simulation configuration file>
 
-**Note:** Make sure that Qt is installed. Unfortunately, Qt cannot be
-installed using pip. The next section gives instructions on installing Qt.
+### Analyze Network Communication Data
+
+The ProtocolGraph class from netdata/protocol_graph/protocol_graph.py represents the data from a network simulation.
+The flow data can be accessed as a [NetworkX](https://networkx.github.io/) multidigraph (multi-graph with directed edges), where the nodes are the worker nodes
+and the edges represent IPFIX flows. See the script connected_components.py as an example for analyzing the connected components
+of a graph obtained from a simulation.
+
+### Import IPFIX Flow Data
+
+While the script get_sim_results described above imports network flow data from SiLK, netdata/import contains tools for accessing
+network flows saved in IPFIX files.
+
 
 ## Resources
 - [SiLK website](https://tools.netsa.cert.org/silk/index.html)
 - [yaf website](https://tools.netsa.cert.org/yaf/libyaf/index.html)
 - [PostgreSQL](https://www.postgresql.org/)
+- [NetworkX](https://networkx.github.io/)
